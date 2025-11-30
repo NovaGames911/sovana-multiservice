@@ -27,1249 +27,156 @@
             --shadow-lg: 0 20px 60px rgba(242, 107, 91, 0.2);
             --shadow-dark: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navbar.scrolled {
-            background: var(--primary);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(242, 107, 91, 0.3);
-        }
-
-        .navbar.scrolled .nav-link {
-            color: var(--white);
-        }
-
-        .navbar.scrolled .nav-link:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            z-index: 1001;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-
-        .logo-name {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-            transition: color 0.4s ease;
-        }
-
-        .navbar.scrolled .logo-name {
-            color: var(--white);
-        }
-
-        .logo-tagline {
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.4s ease;
-        }
-
-        .navbar.scrolled .logo-tagline {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-link {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--white);
-            text-decoration: none;
-            position: relative;
-            padding: 8px 0;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--white);
-            color: var(--primary);
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .nav-cta:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .navbar.scrolled .nav-cta {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .navbar.scrolled .nav-cta:hover {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 2px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled .menu-toggle span {
-            background: var(--white);
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-primary);
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            pointer-events: none;
-        }
-
-        .chevron-pattern {
-            position: absolute;
-            opacity: 0.15;
-        }
-
-        .chevron-pattern.left {
-            left: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .chevron-pattern.right {
-            right: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 120px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            margin-bottom: 30px;
-            color: var(--white);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--white);
-            border-radius: 50%;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .hero-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 25px;
-        }
-
-        .hero-title span {
-            display: block;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
-            max-width: 500px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--white);
-            color: var(--primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary);
-            border-color: var(--white);
-        }
-
-        .hero-visual {
-            position: relative;
-            animation: fadeInUp 1s ease 0.3s forwards;
-            opacity: 0;
-        }
-
-        .hero-image-container {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-dark);
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .hero-stats {
-            position: absolute;
-            bottom: -40px;
-            left: -40px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .stat-card {
-            background: var(--white);
-            padding: 25px 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .stat-card:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .stat-number {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: floatRandom 6s ease-in-out infinite;
-        }
-
-        .floating-element.el1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            right: 5%;
-            animation-delay: 0s;
-        }
-
-        .floating-element.el2 {
-            width: 200px;
-            height: 200px;
-            bottom: 20%;
-            left: 10%;
-            animation-delay: 2s;
-        }
-
-        .floating-element.el3 {
-            width: 150px;
-            height: 150px;
-            top: 40%;
-            left: 5%;
-            animation-delay: 4s;
-        }
-
-        @keyframes floatRandom {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(10px, -20px) rotate(5deg); }
-            50% { transform: translate(-10px, 10px) rotate(-5deg); }
-            75% { transform: translate(20px, 5px) rotate(3deg); }
-        }
-
-        /* About Section */
-        .about {
-            padding: 140px 40px;
-            background: var(--white);
-            position: relative;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .about-images {
-            position: relative;
-            height: 600px;
-        }
-
-        .about-img {
-            position: absolute;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            object-fit: cover;
-        }
-
-        .about-img.main {
-            width: 70%;
-            height: 400px;
-            top: 0;
-            left: 0;
-            z-index: 2;
-        }
-
-        .about-img.secondary {
-            width: 60%;
-            height: 300px;
-            bottom: 0;
-            right: 0;
-            z-index: 1;
-        }
-
-        .about-accent {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: var(--gradient-primary);
-            border-radius: 20px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            opacity: 0.3;
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .section-label::before {
-            content: '';
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-        }
-
-        .section-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1.2;
-            margin-bottom: 25px;
-        }
-
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 40px;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .about-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(242, 107, 91, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .feature-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--primary);
-        }
-
-        .feature-text h4 {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-
-        .feature-text p {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 140px 40px;
-            background: var(--light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0.05;
-            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-        }
-
-        .services-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 80px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(242, 107, 91, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            transition: all 0.4s ease;
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--primary);
-        }
-
-        .service-icon svg {
-            width: 32px;
-            height: 32px;
-            stroke: var(--primary);
-            transition: stroke 0.4s ease;
-        }
-
-        .service-card:hover .service-icon svg {
-            stroke: var(--white);
-        }
-
-        .service-card h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .service-number {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: rgba(242, 107, 91, 0.1);
-            transition: color 0.4s ease;
-        }
-
-        .service-card:hover .service-number {
-            color: rgba(242, 107, 91, 0.2);
-        }
-
-        /* Promoteur Section */
-        .promoteur {
-            padding: 140px 40px;
-            background: var(--gradient-dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promoteur-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(242, 107, 91, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(242, 107, 91, 0.05) 0%, transparent 50%);
-        }
-
-        .promoteur-content {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .promoteur-text .section-label {
-            color: var(--primary-light);
-        }
-
-        .promoteur-text .section-title {
-            color: var(--white);
-        }
-
-        .promoteur-text .section-description {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .promoteur-name {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-light);
-            margin-bottom: 10px;
-        }
-
-        .promoteur-role {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--white);
-            text-decoration: none;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px);
-        }
-
-        .contact-item svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--primary-light);
-        }
-
-        .contact-item span {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .promoteur-visual {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .trust-badges {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .trust-badge {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 30px;
-            border-radius: 15px;
-            text-align: center;
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .trust-badge-number {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-light);
-            display: block;
-        }
-
-        .trust-badge-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        .cta-box {
-            background: var(--gradient-primary);
-            padding: 50px;
-            border-radius: 30px;
-            text-align: center;
-        }
-
-        .cta-box h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 15px;
-        }
-
-        .cta-box p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-        }
-
-        .cta-box .btn {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .cta-box .btn:hover {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 140px 40px;
-            background: var(--white);
-        }
-
-        .projects-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 60px;
-        }
-
-        .projects-slider {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .project-card {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            height: 450px;
-            cursor: pointer;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 30px;
-            background: linear-gradient(to top, rgba(26, 26, 46, 0.95), transparent);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .project-category {
-            color: var(--primary-light);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .project-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            padding: 80px 40px 40px;
-            position: relative;
-        }
-
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 60px;
-            padding-bottom: 60px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-brand .logo-name {
-            color: var(--white);
-        }
-
-        .footer-brand .logo-tagline {
-            color: var(--primary-light);
-        }
-
-        .footer-description {
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 20px;
-            line-height: 1.8;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--white);
-        }
-
-        .footer-column h4 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 25px;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-            transform: translateX(5px);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-legal a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-legal a:hover {
-            color: var(--primary-light);
-        }
-
-        /* Scroll to Top */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
-            z-index: 999;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-5px);
-        }
-
-        .scroll-top svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--white);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .projects-slider {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-description {
-                max-width: 100%;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .about-images {
-                height: 400px;
-            }
-
-            .promoteur-content {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: var(--dark);
-                flex-direction: column;
-                justify-content: center;
-                gap: 30px;
-                transition: right 0.4s ease;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-menu .nav-link {
-                color: var(--white);
-                font-size: 1.5rem;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .projects-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 100px 0;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .services-grid,
-            .projects-slider {
-                grid-template-columns: 1fr;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-            }
-
-            .hero-stats {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                justify-content: center;
-                margin-top: 40px;
-            }
-        }
-
-        /* Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--light); color: var(--dark); overflow-x: hidden; line-height: 1.7; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--light); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 0; transition: all 0.4s ease; }
+        .navbar.scrolled { background: var(--primary); padding: 15px 0; box-shadow: 0 4px 20px rgba(242, 107, 91, 0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 1001; }
+        .logo-icon { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-name { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
+        .logo-tagline { font-size: 0.7rem; font-weight: 500; color: rgba(255, 255, 255, 0.8); letter-spacing: 2px; text-transform: uppercase; }
+        .nav-menu { display: flex; align-items: center; gap: 40px; list-style: none; }
+        .nav-link { font-size: 0.95rem; font-weight: 500; color: var(--white); text-decoration: none; padding: 8px 0; transition: color 0.3s ease; }
+        .nav-link:hover { color: rgba(255,255,255,0.8); }
+        .nav-cta { background: var(--white); color: var(--primary); padding: 12px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+        .nav-cta:hover { background: var(--dark); color: var(--white); transform: translateY(-2px); }
+        .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 28px; height: 2px; background: var(--white); transition: all 0.3s ease; }
+        .hero { min-height: 100vh; background: var(--gradient-primary); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .chevron-pattern { position: absolute; opacity: 0.15; }
+        .chevron-pattern.left { left: -100px; top: 50%; transform: translateY(-50%); }
+        .chevron-pattern.right { right: -100px; top: 50%; transform: translateY(-50%); }
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 120px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+        .hero-text { animation: fadeInUp 1s ease forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 50px; margin-bottom: 30px; color: var(--white); font-size: 0.85rem; font-weight: 500; }
+        .hero-badge-dot { width: 8px; height: 8px; background: var(--white); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero-title { font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 25px; }
+        .hero-title span { display: block; color: rgba(255, 255, 255, 0.9); }
+        .hero-description { font-size: 1.15rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 40px; max-width: 500px; }
+        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--white); color: var(--primary); box-shadow: var(--shadow-md); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .btn-secondary { background: transparent; color: var(--white); border: 2px solid rgba(255, 255, 255, 0.5); }
+        .btn-secondary:hover { background: var(--white); color: var(--primary); border-color: var(--white); }
+        .hero-visual { position: relative; animation: fadeInUp 1s ease 0.3s forwards; opacity: 0; }
+        .hero-image-container { position: relative; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-dark); }
+        .hero-image { width: 100%; height: 500px; object-fit: cover; display: block; }
+        .hero-stats { position: absolute; bottom: -40px; left: -40px; display: flex; gap: 20px; }
+        .stat-card { background: var(--white); padding: 25px 30px; border-radius: 20px; box-shadow: var(--shadow-lg); text-align: center; animation: float 3s ease-in-out infinite; }
+        .stat-card:nth-child(2) { animation-delay: 0.5s; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .stat-number { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 0.85rem; color: var(--gray); font-weight: 500; }
+        .floating-element { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.1); animation: floatRandom 6s ease-in-out infinite; }
+        .floating-element.el1 { width: 300px; height: 300px; top: 10%; right: 5%; }
+        .floating-element.el2 { width: 200px; height: 200px; bottom: 20%; left: 10%; animation-delay: 2s; }
+        .floating-element.el3 { width: 150px; height: 150px; top: 40%; left: 5%; animation-delay: 4s; }
+        @keyframes floatRandom { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(10px, -20px); } }
+        .about { padding: 140px 40px; background: var(--white); }
+        .section-container { max-width: 1400px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+        .about-images { position: relative; height: 600px; }
+        .about-img { position: absolute; border-radius: 20px; box-shadow: var(--shadow-lg); object-fit: cover; }
+        .about-img.main { width: 70%; height: 400px; top: 0; left: 0; z-index: 2; }
+        .about-img.secondary { width: 60%; height: 300px; bottom: 0; right: 0; z-index: 1; }
+        .about-accent { position: absolute; width: 200px; height: 200px; background: var(--gradient-primary); border-radius: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.3; }
+        .section-label { display: inline-flex; align-items: center; gap: 10px; color: var(--primary); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .section-label::before { content: ''; width: 40px; height: 2px; background: var(--primary); }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 25px; }
+        .section-description { font-size: 1.1rem; color: var(--gray); margin-bottom: 40px; }
+        .about-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .about-feature { display: flex; align-items: flex-start; gap: 15px; }
+        .feature-icon { width: 50px; height: 50px; background: rgba(242, 107, 91, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .feature-icon svg { width: 24px; height: 24px; stroke: var(--primary); }
+        .feature-text h4 { font-weight: 600; color: var(--dark); margin-bottom: 5px; }
+        .feature-text p { font-size: 0.9rem; color: var(--gray); }
+        .services { padding: 140px 40px; background: var(--light); position: relative; overflow: hidden; }
+        .services-bg { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: var(--gradient-primary); opacity: 0.05; clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); }
+        .services-header { text-align: center; max-width: 700px; margin: 0 auto 80px; }
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .service-card { background: var(--white); padding: 40px 30px; border-radius: 24px; position: relative; overflow: hidden; transition: all 0.4s ease; cursor: pointer; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon { width: 70px; height: 70px; background: rgba(242, 107, 91, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; transition: all 0.4s ease; }
+        .service-card:hover .service-icon { background: var(--primary); }
+        .service-icon svg { width: 32px; height: 32px; stroke: var(--primary); transition: stroke 0.4s ease; }
+        .service-card:hover .service-icon svg { stroke: var(--white); }
+        .service-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 600; color: var(--dark); margin-bottom: 15px; }
+        .service-card p { font-size: 0.95rem; color: var(--gray); line-height: 1.6; }
+        .service-number { position: absolute; top: 20px; right: 25px; font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; color: rgba(242, 107, 91, 0.1); }
+        .promoteur { padding: 140px 40px; background: var(--gradient-dark); position: relative; overflow: hidden; }
+        .promoteur-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 20% 50%, rgba(242, 107, 91, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(242, 107, 91, 0.05) 0%, transparent 50%); }
+        .promoteur-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+        .promoteur-text .section-label { color: var(--primary-light); }
+        .promoteur-text .section-title { color: var(--white); }
+        .promoteur-text .section-description { color: rgba(255, 255, 255, 0.7); }
+        .promoteur-name { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary-light); margin-bottom: 10px; }
+        .promoteur-role { color: rgba(255, 255, 255, 0.6); font-size: 1rem; margin-bottom: 30px; }
+        .contact-info { display: flex; flex-direction: column; gap: 15px; }
+        .contact-item { display: flex; align-items: center; gap: 15px; color: var(--white); text-decoration: none; padding: 15px 25px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; transition: all 0.3s ease; }
+        .contact-item:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(10px); }
+        .contact-item svg { width: 24px; height: 24px; stroke: var(--primary-light); }
+        .contact-item span { font-size: 1.1rem; font-weight: 500; }
+        .promoteur-visual { display: flex; flex-direction: column; gap: 30px; }
+        .trust-badges { display: flex; gap: 20px; flex-wrap: wrap; }
+        .trust-badge { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px 30px; border-radius: 15px; text-align: center; flex: 1; min-width: 150px; }
+        .trust-badge-number { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--primary-light); display: block; }
+        .trust-badge-label { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; }
+        .cta-box { background: var(--gradient-primary); padding: 50px; border-radius: 30px; text-align: center; }
+        .cta-box h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--white); margin-bottom: 15px; }
+        .cta-box p { color: rgba(255, 255, 255, 0.9); margin-bottom: 30px; }
+        .cta-box .btn { background: var(--white); color: var(--primary); }
+        .cta-box .btn:hover { background: var(--dark); color: var(--white); }
+        .projects { padding: 140px 40px; background: var(--white); }
+        .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .projects-slider { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .project-card { position: relative; border-radius: 24px; overflow: hidden; height: 450px; cursor: pointer; }
+        .project-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .project-card:hover .project-image { transform: scale(1.1); }
+        .project-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px; background: linear-gradient(to top, rgba(26, 26, 46, 0.95), transparent); transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+        .project-card:hover .project-overlay { transform: translateY(0); opacity: 1; }
+        .project-category { color: var(--primary-light); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .project-title { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
+        .footer { background: var(--dark); padding: 80px 40px 40px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-brand .logo-name { color: var(--white); }
+        .footer-brand .logo-tagline { color: var(--primary-light); }
+        .footer-description { color: rgba(255, 255, 255, 0.6); margin-top: 20px; line-height: 1.8; }
+        .footer-social { display: flex; gap: 15px; margin-top: 30px; }
+        .social-link { width: 45px; height: 45px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .social-link:hover { background: var(--primary); transform: translateY(-3px); }
+        .social-link svg { width: 20px; height: 20px; stroke: var(--white); }
+        .footer-column h4 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 25px; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: all 0.3s ease; }
+        .footer-links a:hover { color: var(--primary-light); transform: translateX(5px); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .copyright { color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; }
+        .footer-legal { display: flex; gap: 30px; }
+        .footer-legal a { color: rgba(255, 255, 255, 0.5); text-decoration: none; font-size: 0.9rem; }
+        .footer-legal a:hover { color: var(--primary-light); }
+        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: var(--shadow-md); z-index: 999; }
+        .scroll-top.visible { opacity: 1; visibility: visible; }
+        .scroll-top:hover { background: var(--primary-dark); transform: translateY(-5px); }
+        .scroll-top svg { width: 24px; height: 24px; stroke: var(--white); }
+        @media (max-width: 1200px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .projects-slider { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 992px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .hero-description { max-width: 100%; } .hero-buttons { justify-content: center; } .hero-visual { display: none; } .hero-title { font-size: 3rem; } .about-grid { grid-template-columns: 1fr; gap: 60px; } .about-images { height: 400px; } .promoteur-content { grid-template-columns: 1fr; } .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--dark); flex-direction: column; justify-content: center; gap: 30px; transition: right 0.4s ease; } .nav-menu.active { right: 0; } .nav-menu .nav-link { color: var(--white); font-size: 1.5rem; } .menu-toggle { display: flex; } }
+        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .section-title { font-size: 2rem; } .services-grid, .projects-slider { grid-template-columns: 1fr; } .about-features { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .footer-bottom { flex-direction: column; gap: 20px; text-align: center; } .trust-badges { flex-direction: column; } }
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
@@ -1286,62 +193,31 @@
                 <li><a href="#realisations" class="nav-link">Réalisations</a></li>
                 <li><a href="mailto:contact@sovanamultiservice.com" class="nav-cta">Contactez-nous</a></li>
             </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="floating-element el1"></div>
         <div class="floating-element el2"></div>
         <div class="floating-element el3"></div>
-        
         <svg class="chevron-pattern left" width="300" height="600" viewBox="0 0 300 600" fill="none">
-            <path d="M0 100L150 50L300 100" stroke="white" stroke-width="2"/>
-            <path d="M0 180L150 130L300 180" stroke="white" stroke-width="2"/>
-            <path d="M0 260L150 210L300 260" stroke="white" stroke-width="2"/>
-            <path d="M0 340L150 290L300 340" stroke="white" stroke-width="2"/>
-            <path d="M0 420L150 370L300 420" stroke="white" stroke-width="2"/>
-            <path d="M0 500L150 450L300 500" stroke="white" stroke-width="2"/>
+            <path d="M0 100L150 50L300 100" stroke="white" stroke-width="2"/><path d="M0 180L150 130L300 180" stroke="white" stroke-width="2"/><path d="M0 260L150 210L300 260" stroke="white" stroke-width="2"/><path d="M0 340L150 290L300 340" stroke="white" stroke-width="2"/><path d="M0 420L150 370L300 420" stroke="white" stroke-width="2"/><path d="M0 500L150 450L300 500" stroke="white" stroke-width="2"/>
         </svg>
-        
         <svg class="chevron-pattern right" width="300" height="600" viewBox="0 0 300 600" fill="none">
-            <path d="M0 100L150 50L300 100" stroke="white" stroke-width="2"/>
-            <path d="M0 180L150 130L300 180" stroke="white" stroke-width="2"/>
-            <path d="M0 260L150 210L300 260" stroke="white" stroke-width="2"/>
-            <path d="M0 340L150 290L300 340" stroke="white" stroke-width="2"/>
-            <path d="M0 420L150 370L300 420" stroke="white" stroke-width="2"/>
-            <path d="M0 500L150 450L300 500" stroke="white" stroke-width="2"/>
+            <path d="M0 100L150 50L300 100" stroke="white" stroke-width="2"/><path d="M0 180L150 130L300 180" stroke="white" stroke-width="2"/><path d="M0 260L150 210L300 260" stroke="white" stroke-width="2"/><path d="M0 340L150 290L300 340" stroke="white" stroke-width="2"/><path d="M0 420L150 370L300 420" stroke="white" stroke-width="2"/><path d="M0 500L150 450L300 500" stroke="white" stroke-width="2"/>
         </svg>
-
         <div class="hero-content">
             <div class="hero-text">
-                <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    Expert en Services Techniques Immobiliers
-                </div>
-                <h1 class="hero-title">
-                    Votre Partenaire
-                    <span>Multi-Services</span>
-                </h1>
-                <p class="hero-description">
-                    Solutions complètes en électricité, climatisation, plomberie et maintenance pour les promoteurs immobiliers. Excellence et fiabilité au service de vos projets.
-                </p>
+                <div class="hero-badge"><span class="hero-badge-dot"></span>Expert en Services Techniques Immobiliers</div>
+                <h1 class="hero-title">Votre Partenaire<span>Multi-Services</span></h1>
+                <p class="hero-description">Solutions complètes en électricité, climatisation, plomberie et maintenance pour les promoteurs immobiliers. Excellence et fiabilité au service de vos projets.</p>
                 <div class="hero-buttons">
                     <a href="mailto:contact@sovanamultiservice.com" class="btn btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         Contactez-nous
                     </a>
-                    <a href="#services" class="btn btn-secondary">
-                        Découvrir nos services
-                    </a>
+                    <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -1349,20 +225,13 @@
                     <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Bâtiment moderne" class="hero-image">
                 </div>
                 <div class="hero-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Ans d'Expérience</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Projets Réalisés</span>
-                    </div>
+                    <div class="stat-card"><span class="stat-number">15+</span><span class="stat-label">Ans d'Expérience</span></div>
+                    <div class="stat-card"><span class="stat-number">500+</span><span class="stat-label">Projets Réalisés</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="entreprise">
         <div class="section-container">
             <div class="about-grid">
@@ -1371,64 +240,27 @@
                     <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&q=80" alt="Installation électrique" class="about-img secondary">
                     <div class="about-accent"></div>
                 </div>
-                <div class="about-content reveal reveal-delay-2">
+                <div class="about-content reveal">
                     <span class="section-label">À Propos</span>
                     <h2 class="section-title">L'Excellence au Service de l'Immobilier</h2>
-                    <p class="section-description">
-                        Sovana MultiService est votre partenaire de confiance pour tous vos besoins en services techniques immobiliers. Nous accompagnons les promoteurs immobiliers dans la réalisation de leurs projets avec expertise et professionnalisme.
-                    </p>
-                    <p class="section-description">
-                        Notre équipe qualifiée intervient sur l'ensemble des corps de métier techniques : électricité, climatisation, plomberie, maintenance et bien plus encore. Nous garantissons des prestations de qualité supérieure, dans le respect des délais et des normes en vigueur.
-                    </p>
+                    <p class="section-description">Sovana MultiService est votre partenaire de confiance pour tous vos besoins en services techniques immobiliers. Nous accompagnons les promoteurs immobiliers dans la réalisation de leurs projets avec expertise et professionnalisme.</p>
+                    <p class="section-description">Notre équipe qualifiée intervient sur l'ensemble des corps de métier techniques : électricité, climatisation, plomberie, maintenance et bien plus encore.</p>
                     <div class="about-features">
                         <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                    <polyline points="22 4 12 14.01 9 11.01"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Qualité Certifiée</h4>
-                                <p>Standards élevés garantis</p>
-                            </div>
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                            <div class="feature-text"><h4>Qualité Certifiée</h4><p>Standards élevés garantis</p></div>
                         </div>
                         <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Respect des Délais</h4>
-                                <p>Livraison ponctuelle</p>
-                            </div>
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                            <div class="feature-text"><h4>Respect des Délais</h4><p>Livraison ponctuelle</p></div>
                         </div>
                         <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Équipe Experte</h4>
-                                <p>Professionnels qualifiés</p>
-                            </div>
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                            <div class="feature-text"><h4>Équipe Experte</h4><p>Professionnels qualifiés</p></div>
                         </div>
                         <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Sécurité Garantie</h4>
-                                <p>Normes respectées</p>
-                            </div>
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                            <div class="feature-text"><h4>Sécurité Garantie</h4><p>Normes respectées</p></div>
                         </div>
                     </div>
                 </div>
@@ -1436,110 +268,27 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="services-bg"></div>
         <div class="section-container">
             <div class="services-header reveal">
                 <span class="section-label">Nos Services</span>
                 <h2 class="section-title">Solutions Complètes pour Vos Projets</h2>
-                <p class="section-description">
-                    Une gamme complète de services techniques pour répondre à tous vos besoins immobiliers
-                </p>
+                <p class="section-description">Une gamme complète de services techniques pour répondre à tous vos besoins immobiliers</p>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal reveal-delay-1">
-                    <span class="service-number">01</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                        </svg>
-                    </div>
-                    <h3>Installation Électrique</h3>
-                    <p>Installation complète des réseaux électriques pour bâtiments résidentiels et commerciaux selon les normes en vigueur.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-2">
-                    <span class="service-number">02</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2v6M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M22 12h-6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
-                        </svg>
-                    </div>
-                    <h3>Climatisation & CVC</h3>
-                    <p>Installation et maintenance de systèmes de climatisation, chauffage et ventilation pour un confort optimal.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-3">
-                    <span class="service-number">03</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2v20M2 12l10-10M22 12l-10 10"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <h3>Plomberie & Sanitaire</h3>
-                    <p>Installation et réparation des réseaux d'eau, évacuation et équipements sanitaires de qualité.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-4">
-                    <span class="service-number">04</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                        </svg>
-                    </div>
-                    <h3>Maintenance Préventive & Corrective</h3>
-                    <p>Services de maintenance régulière et interventions d'urgence pour garantir le bon fonctionnement de vos installations.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-1">
-                    <span class="service-number">05</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                        </svg>
-                    </div>
-                    <h3>Études & Conception</h3>
-                    <p>Études techniques, conception de plans et conseils pour optimiser vos projets immobiliers.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-2">
-                    <span class="service-number">06</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                            <path d="M2 12h20"/>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                        </svg>
-                    </div>
-                    <h3>Service Jardinage</h3>
-                    <p>Aménagement et entretien des espaces verts, création de jardins et maintenance paysagère.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-3">
-                    <span class="service-number">07</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
-                    </div>
-                    <h3>Nettoyage Résidentiel</h3>
-                    <p>Services de nettoyage professionnel pour appartements et maisons, nettoyage de fin de chantier.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-4">
-                    <span class="service-number">08</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="3" y1="9" x2="21" y2="9"/>
-                            <line x1="9" y1="21" x2="9" y2="9"/>
-                        </svg>
-                    </div>
-                    <h3>Services Complémentaires</h3>
-                    <p>Et bien plus encore... Contactez-nous pour découvrir l'ensemble de nos prestations personnalisées.</p>
-                </div>
+                <div class="service-card reveal"><span class="service-number">01</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Installation Électrique</h3><p>Installation complète des réseaux électriques pour bâtiments résidentiels et commerciaux selon les normes en vigueur.</p></div>
+                <div class="service-card reveal"><span class="service-number">02</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M22 12h-6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg></div><h3>Climatisation & CVC</h3><p>Installation et maintenance de systèmes de climatisation, chauffage et ventilation pour un confort optimal.</p></div>
+                <div class="service-card reveal"><span class="service-number">03</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12l10-10M22 12l-10 10"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Plomberie & Sanitaire</h3><p>Installation et réparation des réseaux d'eau, évacuation et équipements sanitaires de qualité.</p></div>
+                <div class="service-card reveal"><span class="service-number">04</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><h3>Maintenance Préventive & Corrective</h3><p>Services de maintenance régulière et interventions d'urgence pour garantir le bon fonctionnement.</p></div>
+                <div class="service-card reveal"><span class="service-number">05</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Études & Conception</h3><p>Études techniques, conception de plans et conseils pour optimiser vos projets immobiliers.</p></div>
+                <div class="service-card reveal"><span class="service-number">06</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>Service Jardinage</h3><p>Aménagement et entretien des espaces verts, création de jardins et maintenance paysagère.</p></div>
+                <div class="service-card reveal"><span class="service-number">07</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Nettoyage Résidentiel</h3><p>Services de nettoyage professionnel pour appartements et maisons, nettoyage de fin de chantier.</p></div>
+                <div class="service-card reveal"><span class="service-number">08</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><h3>Services Complémentaires</h3><p>Et bien plus encore... Contactez-nous pour découvrir l'ensemble de nos prestations personnalisées.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Promoteur Section -->
     <section class="promoteur" id="contact">
         <div class="promoteur-pattern"></div>
         <div class="section-container">
@@ -1547,240 +296,77 @@
                 <div class="promoteur-text reveal">
                     <span class="section-label">Contact</span>
                     <h2 class="section-title">Votre Promoteur Immobilier</h2>
-                    <p class="section-description">
-                        N'hésitez pas à nous contacter pour discuter de vos projets. Notre équipe est à votre disposition pour vous accompagner dans tous vos besoins en services techniques.
-                    </p>
+                    <p class="section-description">N'hésitez pas à nous contacter pour discuter de vos projets. Notre équipe est à votre disposition pour vous accompagner.</p>
                     <div class="promoteur-name">MR. Yassine Oussaa</div>
                     <div class="promoteur-role">Promoteur Immobilier</div>
                     <div class="contact-info">
-                        <a href="tel:+212614032330" class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            <span>+212 614 032 330</span>
-                        </a>
-                        <a href="tel:+212717068105" class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            <span>+212 717 068 105</span>
-                        </a>
-                        <a href="mailto:contact@sovanamultiservice.com" class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <span>Envoyer un Email</span>
-                        </a>
+                        <a href="tel:+212614032330" class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>+212 614 032 330</span></a>
+                        <a href="tel:+212717068105" class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>+212 717 068 105</span></a>
+                        <a href="mailto:contact@sovanamultiservice.com" class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>contact@sovanamultiservice.com</span></a>
                     </div>
                 </div>
-                <div class="promoteur-visual reveal reveal-delay-2">
+                <div class="promoteur-visual reveal">
                     <div class="trust-badges">
-                        <div class="trust-badge">
-                            <span class="trust-badge-number">100%</span>
-                            <span class="trust-badge-label">Satisfaction Client</span>
-                        </div>
-                        <div class="trust-badge">
-                            <span class="trust-badge-number">24/7</span>
-                            <span class="trust-badge-label">Support Disponible</span>
-                        </div>
-                        <div class="trust-badge">
-                            <span class="trust-badge-number">8+</span>
-                            <span class="trust-badge-label">Services Proposés</span>
-                        </div>
+                        <div class="trust-badge"><span class="trust-badge-number">100%</span><span class="trust-badge-label">Satisfaction Client</span></div>
+                        <div class="trust-badge"><span class="trust-badge-number">24/7</span><span class="trust-badge-label">Support Disponible</span></div>
+                        <div class="trust-badge"><span class="trust-badge-number">8+</span><span class="trust-badge-label">Services Proposés</span></div>
                     </div>
                     <div class="cta-box">
                         <h3>Prêt à Démarrer Votre Projet ?</h3>
                         <p>Contactez-nous dès maintenant pour un devis gratuit et personnalisé</p>
-                        <a href="mailto:contact@sovanamultiservice.com" class="btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            Demander un Devis
-                        </a>
+                        <a href="mailto:contact@sovanamultiservice.com" class="btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Demander un Devis</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="realisations">
         <div class="section-container">
-            <div class="projects-header reveal">
-                <div>
-                    <span class="section-label">Nos Réalisations</span>
-                    <h2 class="section-title">Projets Récents</h2>
-                </div>
-            </div>
+            <div class="projects-header reveal"><div><span class="section-label">Nos Réalisations</span><h2 class="section-title">Projets Récents</h2></div></div>
             <div class="projects-slider">
-                <div class="project-card reveal reveal-delay-1">
-                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Résidence moderne" class="project-image">
-                    <div class="project-overlay">
-                        <span class="project-category">Installation Électrique</span>
-                        <h3 class="project-title">Résidence Les Jardins</h3>
-                    </div>
-                </div>
-                <div class="project-card reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Immeuble commercial" class="project-image">
-                    <div class="project-overlay">
-                        <span class="project-category">Climatisation & CVC</span>
-                        <h3 class="project-title">Centre Commercial Atlas</h3>
-                    </div>
-                </div>
-                <div class="project-card reveal reveal-delay-3">
-                    <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?w=600&q=80" alt="Appartements luxueux" class="project-image">
-                    <div class="project-overlay">
-                        <span class="project-category">Plomberie Complète</span>
-                        <h3 class="project-title">Résidence Premium Anfa</h3>
-                    </div>
-                </div>
+                <div class="project-card reveal"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Résidence moderne" class="project-image"><div class="project-overlay"><span class="project-category">Installation Électrique</span><h3 class="project-title">Résidence Les Jardins</h3></div></div>
+                <div class="project-card reveal"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Immeuble commercial" class="project-image"><div class="project-overlay"><span class="project-category">Climatisation & CVC</span><h3 class="project-title">Centre Commercial Atlas</h3></div></div>
+                <div class="project-card reveal"><img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?w=600&q=80" alt="Appartements luxueux" class="project-image"><div class="project-overlay"><span class="project-category">Plomberie Complète</span><h3 class="project-title">Résidence Premium Anfa</h3></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <a href="#" class="logo">
-                    <img src="Logo.jpg" alt="Sovana MultiService" class="logo-icon">
-                    <div class="logo-text">
-                        <span class="logo-name">Sovana</span>
-                        <span class="logo-tagline">MultiService</span>
-                    </div>
-                </a>
-                <p class="footer-description">
-                    Votre partenaire de confiance pour tous vos besoins en services techniques immobiliers. Excellence, fiabilité et professionnalisme.
-                </p>
+                <a href="#" class="logo"><img src="Logo.jpg" alt="Sovana MultiService" class="logo-icon"><div class="logo-text"><span class="logo-name">Sovana</span><span class="logo-tagline">MultiService</span></div></a>
+                <p class="footer-description">Votre partenaire de confiance pour tous vos besoins en services techniques immobiliers. Excellence, fiabilité et professionnalisme.</p>
                 <div class="footer-social">
-                    <a href="#" class="social-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect x="2" y="9" width="4" height="12"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                    </a>
+                    <a href="#" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="#" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="#" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
                 </div>
             </div>
-            <div class="footer-column">
-                <h4>Liens Rapides</h4>
-                <ul class="footer-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#entreprise">L'Entreprise</a></li>
-                    <li><a href="#services">Nos Services</a></li>
-                    <li><a href="#realisations">Réalisations</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Nos Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#services">Installation Électrique</a></li>
-                    <li><a href="#services">Climatisation & CVC</a></li>
-                    <li><a href="#services">Plomberie & Sanitaire</a></li>
-                    <li><a href="#services">Maintenance</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><a href="tel:+212614032330">+212 614 032 330</a></li>
-                    <li><a href="tel:+212717068105">+212 717 068 105</a></li>
-                    <li><a href="mailto:contact@sovanamultiservice.com">Envoyer un Email</a></li>
-                </ul>
-            </div>
+            <div class="footer-column"><h4>Liens Rapides</h4><ul class="footer-links"><li><a href="#accueil">Accueil</a></li><li><a href="#entreprise">L'Entreprise</a></li><li><a href="#services">Nos Services</a></li><li><a href="#realisations">Réalisations</a></li></ul></div>
+            <div class="footer-column"><h4>Nos Services</h4><ul class="footer-links"><li><a href="#services">Installation Électrique</a></li><li><a href="#services">Climatisation & CVC</a></li><li><a href="#services">Plomberie & Sanitaire</a></li><li><a href="#services">Maintenance</a></li></ul></div>
+            <div class="footer-column"><h4>Contact</h4><ul class="footer-links"><li><a href="tel:+212614032330">+212 614 032 330</a></li><li><a href="tel:+212717068105">+212 717 068 105</a></li><li><a href="mailto:contact@sovanamultiservice.com">contact@sovanamultiservice.com</a></li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p class="copyright">© 2025 Sovana MultiService. Tous droits réservés.</p>
-            <div class="footer-legal">
-                <a href="#">Politique de Confidentialité</a>
-                <a href="#">Mentions Légales</a>
-            </div>
-        </div>
+        <div class="footer-bottom"><p class="copyright">© 2025 Sovana MultiService. Tous droits réservés.</p><div class="footer-legal"><a href="#">Politique de Confidentialité</a><a href="#">Mentions Légales</a></div></div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <div class="scroll-top" id="scrollTop">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15"/>
-        </svg>
-    </div>
+    <div class="scroll-top" id="scrollTop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></div>
 
     <script>
-        // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile Menu Toggle
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Scroll to Top Button
+        menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', () => { menuToggle.classList.remove('active'); navMenu.classList.remove('active'); }); });
         const scrollTop = document.getElementById('scrollTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Reveal on Scroll Animation
+        window.addEventListener('scroll', () => { scrollTop.classList.toggle('visible', window.scrollY > 500); });
+        scrollTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
         const reveals = document.querySelectorAll('.reveal');
-
-        const revealOnScroll = () => {
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const revealPoint = 150;
-
-                if (elementTop < windowHeight - revealPoint) {
-                    element.classList.add('active');
-                }
-            });
-        };
-
+        const revealOnScroll = () => { reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active'); }); };
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-
-        // Smooth Scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        revealOnScroll();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth' }); }); });
+    </script>
+</body>
+</html>
