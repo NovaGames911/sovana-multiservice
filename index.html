@@ -62,42 +62,6 @@
             background: var(--primary-dark);
         }
 
-        /* Loader */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-            color: var(--white);
-        }
-
-        .loader-logo {
-            width: 120px;
-            height: auto;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
         /* Navigation */
         .navbar {
             position: fixed;
@@ -321,7 +285,6 @@
 
         .hero-text {
             animation: fadeInUp 1s ease forwards;
-            opacity: 0;
         }
 
         @keyframes fadeInUp {
@@ -697,7 +660,6 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            group: true;
         }
 
         .service-card::before {
@@ -1304,13 +1266,6 @@
     </style>
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader">
-        <div class="loader-content">
-            <img src="Logo.jpg" alt="Sovana MultiService" class="loader-logo">
-        </div>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1326,7 +1281,7 @@
                 <li><a href="#entreprise" class="nav-link">L'Entreprise</a></li>
                 <li><a href="#services" class="nav-link">Nos Services</a></li>
                 <li><a href="#realisations" class="nav-link">Réalisations</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#5f3c30312b3e3c2b1f2c30293e313e322a332b362c3a2d29363c3a71323e" class="nav-cta">Contactez-nous</a></li>
+                <li><a href="mailto:contact@sovanamultiservice.ma" class="nav-cta">Contactez-nous</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -1374,7 +1329,7 @@
                     Solutions complètes en électricité, climatisation, plomberie et maintenance pour les promoteurs immobiliers. Excellence et fiabilité au service de vos projets.
                 </p>
                 <div class="hero-buttons">
-                    <a href="/cdn-cgi/l/email-protection#2a4945445e4b495e6a59455c4b444b475f465e43594f585c43494f04474b" class="btn btn-primary">
+                    <a href="mailto:contact@sovanamultiservice.ma" class="btn btn-primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
@@ -1607,7 +1562,7 @@
                             </svg>
                             <span>+212 717 068 105</span>
                         </a>
-                        <a href="/cdn-cgi/l/email-protection#9dfef2f3e9fcfee9ddeef2ebfcf3fcf0e8f1e9f4eef8efebf4fef8b3f0fc" class="contact-item">
+                        <a href="mailto:contact@sovanamultiservice.ma" class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
@@ -1634,7 +1589,7 @@
                     <div class="cta-box">
                         <h3>Prêt à Démarrer Votre Projet ?</h3>
                         <p>Contactez-nous dès maintenant pour un devis gratuit et personnalisé</p>
-                        <a href="/cdn-cgi/l/email-protection#33505c5d4752504773405c45525d525e465f475a405641455a50561d5e52" class="btn">
+                        <a href="mailto:contact@sovanamultiservice.ma" class="btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
@@ -1741,7 +1696,7 @@
                 <ul class="footer-links">
                     <li><a href="tel:+212614032330">+212 614 032 330</a></li>
                     <li><a href="tel:+212717068105">+212 717 068 105</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#d7b4b8b9a3b6b4a397a4b8a1b6b9b6baa2bba3bea4b2a5a1beb4b2f9bab6">Envoyer un Email</a></li>
+                    <li><a href="mailto:contact@sovanamultiservice.ma">Envoyer un Email</a></li>
                 </ul>
             </div>
         </div>
@@ -1761,14 +1716,7 @@
         </svg>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.loader').classList.add('hidden');
-            }, 1500);
-        });
-
+    <script>
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         
@@ -1833,3 +1781,16 @@
         // Smooth Scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
