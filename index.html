@@ -147,8 +147,6 @@
         .project-card:hover .project-overlay { transform: translateY(0); opacity: 1; }
         .project-category { color: var(--primary-light); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
         .project-title { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
-        
-        /* Clients Section */
         .clients { padding: 140px 40px; background: var(--light); }
         .clients-header { text-align: center; margin-bottom: 80px; }
         .clients-slider-container { position: relative; max-width: 1200px; margin: 0 auto; }
@@ -163,7 +161,6 @@
         .clients-arrow:hover svg { stroke: var(--white); }
         .clients-arrow-left { left: -25px; }
         .clients-arrow-right { right: -25px; }
-        
         .footer { background: var(--dark); padding: 80px 40px 40px; }
         .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .footer-brand .logo-name { color: var(--white); }
@@ -186,11 +183,114 @@
         .scroll-top.visible { opacity: 1; visibility: visible; }
         .scroll-top:hover { background: var(--primary-dark); transform: translateY(-5px); }
         .scroll-top svg { width: 24px; height: 24px; stroke: var(--white); }
-        @media (max-width: 1200px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .projects-slider { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 992px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .hero-description { max-width: 100%; } .hero-buttons { justify-content: center; } .hero-visual { display: none; } .hero-title { font-size: 3rem; } .about-grid { grid-template-columns: 1fr; gap: 60px; } .about-images { height: 400px; } .promoteur-content { grid-template-columns: 1fr; } .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--dark); flex-direction: column; justify-content: center; gap: 30px; transition: right 0.4s ease; } .nav-menu.active { right: 0; } .nav-menu .nav-link { color: var(--white); font-size: 1.5rem; } .menu-toggle { display: flex; } .clients-arrow { display: none; } .clients-slider { overflow-x: auto; } }
-        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .section-title { font-size: 2rem; } .services-grid, .projects-slider { grid-template-columns: 1fr; } .about-features { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .footer-bottom { flex-direction: column; gap: 20px; text-align: center; } .trust-badges { flex-direction: column; } }
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        @media (max-width: 1200px) { 
+            .services-grid { grid-template-columns: repeat(2, 1fr); } 
+            .projects-slider { grid-template-columns: repeat(2, 1fr); } 
+            .footer-grid { grid-template-columns: repeat(2, 1fr); } 
+        }
+        @media (max-width: 992px) { 
+            .nav-container { padding: 0 20px; }
+            .hero { min-height: 90vh; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; padding: 100px 20px 60px; } 
+            .hero-description { max-width: 100%; } 
+            .hero-buttons { justify-content: center; } 
+            .hero-visual { display: none; } 
+            .hero-title { font-size: 3rem; } 
+            .about { padding: 80px 20px; }
+            .about-grid { grid-template-columns: 1fr; gap: 60px; } 
+            .about-images { height: 400px; } 
+            .services { padding: 80px 20px; }
+            .promoteur { padding: 80px 20px; }
+            .promoteur-content { grid-template-columns: 1fr; gap: 40px; } 
+            .projects { padding: 80px 20px; }
+            .clients { padding: 80px 20px; }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--dark); flex-direction: column; justify-content: center; gap: 30px; transition: right 0.4s ease; } 
+            .nav-menu.active { right: 0; } 
+            .nav-menu .nav-link { color: var(--white); font-size: 1.5rem; } 
+            .menu-toggle { display: flex; } 
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+            .clients-arrow { display: none; } 
+            .clients-slider { overflow-x: auto; -webkit-overflow-scrolling: touch; } 
+        }
+        @media (max-width: 768px) { 
+            .navbar { padding: 15px 0; }
+            .navbar.scrolled { padding: 12px 0; }
+            .nav-container { padding: 0 15px; }
+            .logo-icon { width: 40px; height: 40px; }
+            .logo-name { font-size: 1.2rem; }
+            .logo-tagline { font-size: 0.6rem; }
+            .hero-content { padding: 80px 15px 60px; }
+            .hero-title { font-size: 2.2rem; } 
+            .hero-description { font-size: 1rem; margin-bottom: 30px; }
+            .hero-badge { font-size: 0.75rem; padding: 8px 16px; margin-bottom: 20px; }
+            .btn { padding: 14px 28px; font-size: 0.95rem; }
+            .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .about { padding: 60px 15px; }
+            .about-images { height: 350px; }
+            .section-label { font-size: 0.8rem; }
+            .section-label::before { width: 30px; }
+            .section-title { font-size: 1.8rem; } 
+            .section-description { font-size: 1rem; margin-bottom: 30px; }
+            .about-features { grid-template-columns: 1fr; gap: 20px; } 
+            .feature-icon { width: 45px; height: 45px; }
+            .feature-text h4 { font-size: 0.95rem; }
+            .feature-text p { font-size: 0.85rem; }
+            .services { padding: 60px 15px; }
+            .services-header { margin-bottom: 50px; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; } 
+            .service-card { padding: 30px 25px; }
+            .service-card h3 { font-size: 1.15rem; }
+            .service-card p { font-size: 0.9rem; }
+            .service-number { font-size: 2.5rem; }
+            .promoteur { padding: 60px 15px; }
+            .promoteur-name { font-size: 1.5rem; }
+            .promoteur-role { font-size: 0.9rem; }
+            .contact-item { padding: 12px 20px; font-size: 0.9rem; }
+            .contact-item span { font-size: 1rem; }
+            .trust-badge { padding: 15px 20px; min-width: 120px; }
+            .trust-badge-number { font-size: 2rem; }
+            .trust-badge-label { font-size: 0.8rem; }
+            .trust-badges { flex-direction: column; } 
+            .cta-box { padding: 35px 25px; }
+            .cta-box h3 { font-size: 1.4rem; }
+            .cta-box p { font-size: 0.9rem; margin-bottom: 20px; }
+            .projects { padding: 60px 15px; }
+            .projects-header { margin-bottom: 40px; }
+            .projects-slider { grid-template-columns: 1fr; gap: 20px; } 
+            .project-card { height: 350px; }
+            .project-overlay { padding: 25px 20px; opacity: 1; transform: translateY(0); }
+            .project-title { font-size: 1.3rem; }
+            .project-category { font-size: 0.75rem; }
+            .clients { padding: 60px 15px; }
+            .clients-header { margin-bottom: 50px; }
+            .client-logo { min-width: 140px; height: 140px; padding: 20px; }
+            .clients-slider { gap: 20px; padding: 15px 0; }
+            .footer { padding: 60px 15px 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; } 
+            .footer-column h4 { font-size: 1rem; margin-bottom: 20px; }
+            .footer-description { font-size: 0.9rem; }
+            .footer-social { gap: 10px; margin-top: 20px; }
+            .social-link { width: 40px; height: 40px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; padding-top: 30px; } 
+            .footer-legal { flex-direction: column; gap: 10px; }
+            .scroll-top { width: 45px; height: 45px; bottom: 20px; right: 20px; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .service-card { padding: 25px 20px; }
+            .service-card h3 { font-size: 1.05rem; }
+            .client-logo { min-width: 120px; height: 120px; padding: 15px; }
+            .project-card { height: 300px; }
+            .promoteur-name { font-size: 1.3rem; }
+            .trust-badge-number { font-size: 1.8rem; }
+            .cta-box h3 { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -349,7 +449,6 @@
         </div>
     </section>
 
-    <!-- Clients Section -->
     <section class="clients">
         <div class="section-container">
             <div class="clients-header reveal">
@@ -424,8 +523,6 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
         document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth' }); }); });
-        
-        // Clients Slider
         const clientsSlider = document.getElementById('clientsSlider');
         const clientsArrowLeft = document.getElementById('clientsArrowLeft');
         const clientsArrowRight = document.getElementById('clientsArrowRight');
